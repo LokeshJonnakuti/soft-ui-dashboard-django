@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import os, random, string
+import os, string
 from pathlib import Path
 from dotenv import load_dotenv
+import secrets
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
-    SECRET_KEY = ''.join(random.choice( string.ascii_lowercase  ) for i in range( 32 ))
+    SECRET_KEY = ''.join(secrets.choice(string.ascii_lowercase  ) for i in range( 32 ))
 
 # Render Deployment Code
 DEBUG = 'RENDER' not in os.environ
